@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 UPSTREAM_DIR="${UPSTREAM_DIR:-$ROOT_DIR/upstream/Extension}"
 UPSTREAM_URL="${UPSTREAM_URL:-https://github.com/SevenTV/Extension.git}"
-UPSTREAM_REF="${UPSTREAM_REF:-master}"
+UPSTREAM_REF="${UPSTREAM_REF:-nightly-release}"
 
 mkdir -p "$(dirname "$UPSTREAM_DIR")"
 
@@ -16,4 +16,3 @@ else
 fi
 
 git -C "$UPSTREAM_DIR" rev-parse HEAD
-

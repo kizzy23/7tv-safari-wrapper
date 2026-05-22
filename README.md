@@ -10,19 +10,27 @@ The current 7TV extension is not just a site userscript. It uses a generated ext
 
 ## Workflow
 
-```sh
-npm run rebuild:safari
-```
-
-The upstream repo is cloned into `upstream/Extension`, built into `upstream/Extension/dist`, and converted into an Xcode project under `safari/`. Generated upstream and Safari project directories are intentionally ignored by git.
-
-After conversion, open the generated project:
+Nightly/pre-release build:
 
 ```sh
-open "safari/SevenTV Safari/SevenTV Safari.xcodeproj"
+npm run rebuild:safari:nightly
 ```
 
-Run the `SevenTV Safari` scheme in Xcode, then enable the extension in Safari Settings.
+Stable build:
+
+```sh
+npm run rebuild:safari:stable
+```
+
+The upstream repo is cloned into `upstream/Extension`, built into `upstream/Extension/dist`, and converted into an Xcode project under `safari/`. The nightly build tracks SevenTV's `nightly-release` pre-release tag. The stable-style build tracks SevenTV's public `master` branch because the numbered stable tags in the public repo can lag behind Chrome Web Store releases. Generated upstream and Safari project directories are intentionally ignored by git.
+
+After conversion, open the generated nightly project:
+
+```sh
+open "safari/nightly/SevenTV Safari Nightly/SevenTV Safari Nightly.xcodeproj"
+```
+
+Run the `SevenTV Safari Nightly` scheme in Xcode, then enable the extension in Safari Settings. The stable project is generated under `safari/stable/`.
 
 ## Requirements
 
@@ -56,11 +64,16 @@ rm -rf ~/Library/Developer/Xcode/DerivedData/7TV_Safari-*
 
 Optional environment variables:
 
-- `UPSTREAM_REF`: upstream branch or ref, defaults to `master`
+- `UPSTREAM_REF`: upstream branch, tag, or ref, defaults to `nightly-release`
 - `BUILD_MODE`: 7TV build mode, defaults to `prod`
 - `APP_NAME`: generated Safari app name, defaults to `SevenTV Safari`
 - `BUNDLE_IDENTIFIER`: generated app bundle identifier, defaults to `dev.local.seventv.safari`
 - `SAFARI_DIR`: generated Xcode project directory, defaults to `safari`
+
+## Variants
+
+- Stable: `npm run rebuild:safari:stable`, app name `SevenTV Safari`, output `safari/stable/`
+- Nightly: `npm run rebuild:safari:nightly`, app name `SevenTV Safari Nightly`, output `safari/nightly/`
 
 ## Publishing
 
