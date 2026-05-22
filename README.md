@@ -1,8 +1,8 @@
 # 7TV Safari
 
-This workspace builds the public [SevenTV/Extension](https://github.com/SevenTV/Extension) WebExtension and prepares it for Safari using Apple's Safari WebExtension converter.
+This workspace prepares 7TV's WebExtension for Safari using Apple's Safari WebExtension converter. The default build uses the current recommended Chrome Web Store package, while public-source stable/nightly builds remain available as alternate variants.
 
-Unofficial project. Not affiliated with, endorsed by, or supported by 7TV or SEVENTV SARL. 7TV source and assets are fetched from the public upstream repository at build time and remain subject to the upstream license.
+Unofficial project. Not affiliated with, endorsed by, or supported by 7TV or SEVENTV SARL. 7TV source, packages, and assets are fetched at build time and remain subject to upstream licensing and distribution terms.
 
 ## Why this path
 
@@ -10,27 +10,35 @@ The current 7TV extension is not just a site userscript. It uses a generated ext
 
 ## Workflow
 
-Nightly/pre-release build:
+Default recommended build:
+
+```sh
+npm run rebuild:safari
+```
+
+This downloads the current Chrome Web Store package for `lppmekppnliemjclknbagdhoocikieoi`, unpacks it under `build/chrome-webstore/`, removes Chrome-only package metadata, and converts it into `safari/next/`.
+
+Open the generated project:
+
+```sh
+open "safari/next/SevenTV Safari Next/SevenTV Safari Next.xcodeproj"
+```
+
+Run the `SevenTV Safari Next` scheme in Xcode, then enable the extension in Safari Settings.
+
+Public-source nightly/pre-release build:
 
 ```sh
 npm run rebuild:safari:nightly
 ```
 
-Stable build:
+Public-source stable-style build:
 
 ```sh
 npm run rebuild:safari:stable
 ```
 
-The upstream repo is cloned into `upstream/Extension`, built into `upstream/Extension/dist`, and converted into an Xcode project under `safari/`. The nightly build tracks SevenTV's `nightly-release` pre-release tag. The stable-style build tracks SevenTV's public `master` branch because the numbered stable tags in the public repo can lag behind Chrome Web Store releases. Generated upstream and Safari project directories are intentionally ignored by git.
-
-After conversion, open the generated nightly project:
-
-```sh
-open "safari/nightly/SevenTV Safari Nightly/SevenTV Safari Nightly.xcodeproj"
-```
-
-Run the `SevenTV Safari Nightly` scheme in Xcode, then enable the extension in Safari Settings. The stable project is generated under `safari/stable/`.
+The public-source variants clone `upstream/Extension`, build into `upstream/Extension/dist`, and convert into `safari/stable/` or `safari/nightly/`. Generated upstream, downloaded, and Safari project directories are intentionally ignored by git.
 
 ## Requirements
 
@@ -52,7 +60,7 @@ Xcode may print WebKit sandbox messages about `linkd`, pasteboard, LaunchService
 
 The converter currently warns that Safari does not support the `management`, `default_area`, and `open_in_tab` manifest keys. The extension can still run, but features depending on unsupported Safari APIs or Twitch player internals may need targeted compatibility work.
 
-The toolbar popup currently shows 7TV's upstream "Coming Soon" placeholder after permissions are granted. This is upstream behavior, not a Safari conversion bug.
+The older public-source extension line may show 7TV's upstream "Coming Soon" toolbar popup after permissions are granted. The default Chrome Web Store package uses its own `popup.html`.
 
 If Safari shows duplicate local 7TV entries after renaming or regenerating the host app, clear the old Xcode DerivedData build and reopen Safari:
 
@@ -69,11 +77,13 @@ Optional environment variables:
 - `APP_NAME`: generated Safari app name, defaults to `SevenTV Safari`
 - `BUNDLE_IDENTIFIER`: generated app bundle identifier, defaults to `dev.local.seventv.safari`
 - `SAFARI_DIR`: generated Xcode project directory, defaults to `safari`
+- `EXTENSION_ID`: Chrome Web Store extension id for `npm run fetch:webstore`, defaults to `lppmekppnliemjclknbagdhoocikieoi`
 
 ## Variants
 
-- Stable: `npm run rebuild:safari:stable`, app name `SevenTV Safari`, output `safari/stable/`
-- Nightly: `npm run rebuild:safari:nightly`, app name `SevenTV Safari Nightly`, output `safari/nightly/`
+- Default recommended Chrome Web Store: `npm run rebuild:safari`, app name `SevenTV Safari Next`, output `safari/next/`
+- Public-source stable-style: `npm run rebuild:safari:stable`, app name `SevenTV Safari`, output `safari/stable/`
+- Public-source nightly: `npm run rebuild:safari:nightly`, app name `SevenTV Safari Nightly`, output `safari/nightly/`
 
 ## Publishing
 

@@ -16,11 +16,12 @@ Do not commit these generated directories:
 
 - `upstream/Extension/`
 - `safari/`
+- `build/`
 - `node_modules/`
 
 The generated `safari/` project contains copied 7TV extension resources. Keeping it out of GitHub avoids redistributing a built derivative and keeps this repo focused on personal-use build tooling.
 
-The wrapper supports separate stable and nightly builds. The nightly build tracks SevenTV's `nightly-release` pre-release tag and generates a separate `SevenTV Safari Nightly` Xcode project.
+The wrapper defaults to the recommended Chrome Web Store build, which downloads the current package at build time and generates `SevenTV Safari Next`. Public-source stable-style and nightly variants are still available for comparison.
 
 ## Optional GitHub nightly release
 
@@ -28,11 +29,11 @@ If you create GitHub releases for this wrapper, use a separate tag such as `nigh
 
 ## Suggested repository description
 
-Unofficial personal-use Safari WebExtension packaging wrapper for SevenTV/Extension.
+Unofficial personal-use Safari WebExtension packaging wrapper for 7TV.
 
 ## Suggested README disclaimer
 
-Unofficial project. Not affiliated with, endorsed by, or supported by 7TV or SEVENTV SARL. 7TV source and assets are fetched from the public SevenTV/Extension repository at build time and remain subject to their upstream license.
+Unofficial project. Not affiliated with, endorsed by, or supported by 7TV or SEVENTV SARL. 7TV source, packages, and assets are fetched at build time and remain subject to upstream licensing and distribution terms.
 
 ## First push
 

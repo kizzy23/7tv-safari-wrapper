@@ -7,14 +7,18 @@
     "sync": "scripts/sync-upstream.sh",
     "sync:stable": "UPSTREAM_REF=master npm run sync",
     "sync:nightly": "UPSTREAM_REF=nightly-release npm run sync",
+    "fetch:webstore": "scripts/fetch-chrome-webstore-extension.sh",
+    "fetch:webstore:next": "EXTENSION_ID=lppmekppnliemjclknbagdhoocikieoi DEST_DIR=build/chrome-webstore/7tv-next npm run fetch:webstore",
     "build:webextension": "scripts/build-webextension.sh",
     "build:webextension:stable": "BRANCH= OUT_DIR=stable npm run build:webextension",
     "build:webextension:nightly": "BRANCH=nightly OUT_DIR=nightly npm run build:webextension",
     "convert:safari": "scripts/convert-safari.sh",
     "convert:safari:stable": "DIST_DIR=upstream/Extension/dist/stable SAFARI_DIR=safari/stable APP_NAME='SevenTV Safari' BUNDLE_IDENTIFIER=dev.local.seventv.safari npm run convert:safari",
     "convert:safari:nightly": "DIST_DIR=upstream/Extension/dist/nightly SAFARI_DIR=safari/nightly APP_NAME='SevenTV Safari Nightly' BUNDLE_IDENTIFIER=dev.local.seventv.safari.nightly npm run convert:safari",
-    "rebuild:safari": "npm run rebuild:safari:nightly",
+    "convert:safari:next": "DIST_DIR=build/chrome-webstore/7tv-next SAFARI_DIR=safari/next APP_NAME='SevenTV Safari Next' BUNDLE_IDENTIFIER=dev.local.seventv.safari.next npm run convert:safari",
+    "rebuild:safari": "npm run rebuild:safari:next",
     "rebuild:safari:stable": "npm run sync:stable && npm run build:webextension:stable && npm run convert:safari:stable",
-    "rebuild:safari:nightly": "npm run sync:nightly && npm run build:webextension:nightly && npm run convert:safari:nightly"
+    "rebuild:safari:nightly": "npm run sync:nightly && npm run build:webextension:nightly && npm run convert:safari:nightly",
+    "rebuild:safari:next": "npm run fetch:webstore:next && npm run convert:safari:next"
   }
 }
