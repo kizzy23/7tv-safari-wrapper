@@ -1,0 +1,5 @@
+node_modules/
+upstream/Extension/
+build/
+safari/
+.DS_Store

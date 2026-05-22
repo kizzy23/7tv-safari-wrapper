@@ -1,0 +1,12 @@
+{
+  "name": "7tv-safari",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local tooling to build 7TV's WebExtension and convert it into a personal Safari extension project.",
+  "scripts": {
+    "sync": "scripts/sync-upstream.sh",
+    "build:webextension": "scripts/build-webextension.sh",
+    "convert:safari": "scripts/convert-safari.sh",
+    "rebuild:safari": "npm run sync && npm run build:webextension && npm run convert:safari"
+  }
+}
