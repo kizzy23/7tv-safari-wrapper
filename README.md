@@ -88,3 +88,7 @@ Optional environment variables:
 ## Publishing
 
 For GitHub publishing guidance, see `docs/github.md`.
+
+## Current upstream status
+
+For the latest verified Chrome Web Store and public-source upstream status, see `docs/status.md`.
