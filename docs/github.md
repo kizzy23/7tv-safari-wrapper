@@ -21,7 +21,7 @@ Do not commit these generated directories:
 
 The generated `safari/` project contains copied 7TV extension resources. Keeping it out of GitHub avoids redistributing a built derivative and keeps this repo focused on personal-use build tooling.
 
-The wrapper defaults to the recommended Chrome Web Store build, which downloads the current package at build time and generates `SevenTV Safari Next`. Public-source stable-style and nightly variants are still available for comparison.
+The wrapper defaults to the public `SevenTV/Extension` source build, which clones upstream at build time and generates `SevenTV Safari`. A Chrome Web Store fallback remains available for comparison.
 
 ## Optional GitHub nightly release
 
