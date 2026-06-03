@@ -1,6 +1,6 @@
 # Upstream Status
 
-Last checked: 2026-05-30
+Last checked: 2026-06-03
 
 ## Recommended Chrome Web Store package
 
@@ -19,5 +19,6 @@ This remains available as a fallback through `npm run rebuild:safari:webstore`.
 - Latest normal release tag observed: `v3.1.6`
 - Local Safari wrapper rebuild: verified with `npm run rebuild:safari`
 - Xcode Debug build: verified with `xcodebuild`
+- Latest update check: no upstream source change since the previous rebuild
 
 The public-source stable-style variant is now the default used by `npm run rebuild:safari`. The Chrome Web Store package remains available as a comparison build.
